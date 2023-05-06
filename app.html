@@ -9,38 +9,39 @@
 
     <title>Weather App</title>
 
+    <link rel="icon" type="image/jpeg" href="favicon.jpeg">
     <link rel="stylesheet" href="app.css">
 
 </head>
 
 <body>
+    <main class="weather-sunny-img">
 
-<main class="weather-sunny-img">
-    
-    <div class="sidebar">
-    
-        <h1>10&#176;</h1>
-    
-    </div>
-    
-    
-    <div class="main-content-container">
+        <div class="sidebar">
+
+            <div id="temperature"></div>
+
+        </div>
 
 
-        <h3>Madrid, Spain</h3>
-    
-        <h1>Raining (Test Example)</h1>
+        <div class="main-content-container">
 
-        <!-- Test Button -->
-        <!-- <input onclick="handleBackgroundImage('snowy')" type="submit" value="Click me for snowy weather!" style="padding: 2rem; border-radius: 1rem; background-color: blue; color: white;" /> -->
+            <div class="geolocation-container">
+                <div id="city"></div>
+                <div id="region"></div>
+                <div id="country"></div>
+            </div>
 
-    
-    </div>
+            <div id="headline">It's Sunny Today</div>
 
-</main>
-        
+            <!-- Test Button -->
+            <!-- <input onclick="handleBackgroundImage('snowy')" type="submit" value="Click me for snowy weather!"
+                style="padding: 2rem; border-radius: 1rem; background-color: blue; color: white;" /> -->
 
-    
+        </div>
+
+    </main>
+
     <script defer src="app.js"></script>
 </body>
 
