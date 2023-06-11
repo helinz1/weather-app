@@ -15,17 +15,9 @@ const backgroundImageClasses = {
     snowy: 'weather-snowy-img'
 };
 
-const headlines = {
-    sunny: "It's sunny today",
-    cloudy: "It's cloudy today",
-    rainy: "It's rainy today",
-    snowy: "It's snowy today"
-};
-
 const handleBackgroundImage = (weatherCondition) => {
     weatherCondition = weatherCondition.toLowerCase();
     mainElement.className = backgroundImageClasses[weatherCondition];
-    headlineElement.innerText = headlines[weatherCondition];
 };
 
 const fetchWeatherData = async () => {
@@ -40,6 +32,7 @@ const fetchWeatherData = async () => {
 const updateUI = (data) => {
     console.log(`API Response: ${JSON.stringify(data)}`);
 
+    headlineElement.innerText = `${data.Condition} now`;
     geolocationElement.innerText = data.Geolocation;
     temperatureElement.innerText = `${data.TemperatureC} °C / ${data.TemperatureF}  °F`;
     humidityElement.innerText = `Humidity: ${data.Humidity}`
