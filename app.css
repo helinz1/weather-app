@@ -21,6 +21,7 @@ main {
 }
 
 .sidebar {
+    border-radius: 2.5rem;
     background-color: rgb(0, 0, 0, 0.5);
     border-right: 0.1rem solid;
     box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.3);
@@ -40,15 +41,6 @@ main {
 
 .main-content-container h1 {
     font-size: 50px;
-}
-
-.geolocation-container {
-    display: flex;
-    gap: 1rem;
-}
-
-.geolocation-container>* {
-    font-size: 4rem;
 }
 
 #headline {
