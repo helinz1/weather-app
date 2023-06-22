@@ -1,3 +1,4 @@
 # Weather Web App
 
-<a href="/app.html">Index</a>
+### Pages
+<a href="https://ramvilsil.github.io/weather-app-web/app.html">Index</a>
