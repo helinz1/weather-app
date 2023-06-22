@@ -1,4 +1,3 @@
 # Weather Web App
 
-## Info
-Client IP Address -> Client Geolocation -> Weather Details
+<a href="/app.html">Index</a>
