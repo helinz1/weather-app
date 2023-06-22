@@ -14,27 +14,25 @@
 
 </head>
 
-<body>
-    <main class="weather-sunny-img">
+<body class="weather-default-img">
+    <main>
 
-        <div class="sidebar">
+        <form id="searchbar">
+            <input id="searchbar-input" type="text" placeholder="Enter a geolocation..." />
+            <input type="submit" hidden />
+        </form>
 
-            <div id="temperature"></div>
-
-        </div>
-
-        <div class="main-content-container">
-
-            <div id="headline"></div>
-            <div id="geolocation"></div>
+        <div class="row">
             <div id="humidity"></div>
+            <div id="temperature"></div>
             <div id="wind"></div>
-
         </div>
+
+        <div id="headline"></div>
 
     </main>
 
-    <script defer src="app.js"></script>
+    <script defer src="app.js" type="module"></script>
 </body>
 
 </html>

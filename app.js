@@ -1,14 +1,20 @@
-const apiUrl = 'https://weather-service-vbnet.azurewebsites.net/api/currentweather';
+import { fetchWeatherDataFromGet, fetchWeatherDataFromPost } from './api.js';
+
+// ------ Select elements ------
+const bodyElement = document.getElementsByTagName('body')[0];
 
 const el = id => document.getElementById(id);
 const headlineElement = el('headline');
-const geolocationElement = el('geolocation');
-const temperatureElement = el('temperature');
 const humidityElement = el('humidity');
+const temperatureElement = el('temperature');
 const windElement = el('wind');
-const mainElement = document.getElementsByTagName('main')[0];
 
+const searchbarElement = document.getElementById('searchbar');
+const searchbarInputElement = document.getElementById('searchbar-input');
+
+// ------ Select style classes ------
 const backgroundImageClasses = {
+    default: 'weather-default-img',
     sunny: 'weather-sunny-img',
     cloudy: 'weather-cloudy-img',
     rainy: 'weather-rainy-img',
@@ -17,31 +23,32 @@ const backgroundImageClasses = {
 
 const handleBackgroundImage = (weatherCondition) => {
     weatherCondition = weatherCondition.toLowerCase();
-    mainElement.className = backgroundImageClasses[weatherCondition];
-};
 
-const fetchWeatherData = async () => {
-    try {
-        const response = await fetch(apiUrl);
-        return await response.json();
-    } catch (error) {
-        console.error('Error fetching API Response:', error);
+    if (backgroundImageClasses.hasOwnProperty(weatherCondition)) {
+        bodyElement.className = backgroundImageClasses[weatherCondition];
+    } else {
+        bodyElement.className = backgroundImageClasses['default'];
     }
 };
 
-const updateUI = (data) => {
-    console.log(`API Response: ${JSON.stringify(data)}`);
-
-    headlineElement.innerText = `${data.Condition} now`;
-    geolocationElement.innerText = data.Geolocation;
-    temperatureElement.innerText = `${data.TemperatureC} °C / ${data.TemperatureF}  °F`;
-    humidityElement.innerText = `Humidity: ${data.Humidity}`
-    windElement.innerText = `Wind: ${data.WindKph} KPH / ${data.WindMph} MPH`
-
+const updateUi = (data) => {
+    headlineElement.innerText = `${data.Condition} now in\n${data.Geolocation}`;
+    temperatureElement.innerText = `Temperature:\n${data.TemperatureC} °C / ${data.TemperatureF} °F`;
+    humidityElement.innerText = `Humidity:\n${data.Humidity}%`
+    windElement.innerText = `Wind:\n${data.WindKph} KPH / ${data.WindMph} MPH`
     handleBackgroundImage(data.Condition);
 };
 
+searchbarElement.addEventListener('submit', async (event) => {
+    event.preventDefault();
+
+    const weatherData = await fetchWeatherDataFromPost(searchbarInputElement.value);
+    updateUi(weatherData);
+
+    searchbarElement.reset();
+});
+
 window.onload = async () => {
-    const weatherData = await fetchWeatherData();
-    updateUI(weatherData);
+    const weatherData = await fetchWeatherDataFromGet();
+    updateUi(weatherData);
 };
