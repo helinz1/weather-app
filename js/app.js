@@ -32,10 +32,32 @@ const handleBackgroundImage = (weatherCondition) => {
 };
 
 const updateUi = (data) => {
-    headlineElement.innerText = `${data.Condition} now in\n${data.Geolocation}`;
-    temperatureElement.innerText = `Temperature:\n${data.TemperatureC} °C / ${data.TemperatureF} °F`;
-    humidityElement.innerText = `Humidity:\n${data.Humidity}%`
-    windElement.innerText = `Wind:\n${data.WindKph} KPH / ${data.WindMph} MPH`
+    let geolocationArray = [];
+
+    if (data.Geolocation.City != null) {
+        geolocationArray.push(data.Geolocation.City);
+    }
+    if (data.Geolocation.Region != null) {
+        geolocationArray.push(data.Geolocation.Region);
+    }
+    if (data.Geolocation.Country != null) {
+        geolocationArray.push(data.Geolocation.Country);
+    }
+
+    let geolocation = geolocationArray.join(", ");
+
+    if (geolocation === "") {
+        geolocation = "Unknown location";
+    }
+
+    headlineElement.innerText = `${data.Condition || 'Unknown condition'} now in\n${geolocation}`;
+
+    temperatureElement.innerText = `Temperature:\n${data.TemperatureC || 'N/A'} °C / ${data.TemperatureF || 'N/A'} °F`;
+
+    humidityElement.innerText = `Humidity:\n${data.Humidity != null ? data.Humidity : 'N/A'}%`;
+
+    windElement.innerText = `Wind:\n${data.WindKph || 'N/A'} KPH / ${data.WindMph || 'N/A'} MPH`;
+
     handleBackgroundImage(data.Condition);
 };
 
