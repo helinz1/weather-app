@@ -18,3 +18,6 @@ Uses `fetchWeatherDataFromGet` and `fetchWeatherDataFromPost` from `api.js`. The
 
 - `handleBackgroundImage(weatherCondition)`: Changes the background image based on weather condition.
 - `updateUi(data)`: Updates the UI with fetched weather data.
+
+## Images
+![Screenshot 2023-07-05 210425](https://github.com/ramvilsil/weather-app-web/assets/115331883/0d9d2b8d-647d-4e35-9e03-6a7dec7766a0)
