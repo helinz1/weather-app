@@ -1,5 +1,6 @@
 # Weather App (Web)
 
+## About
 Frontend client built with HTML, CSS, and JavaScript.
 Interacts with the [WeatherService API](https://github.com/ramvilsil/weather-service-api-vbnet).
 
