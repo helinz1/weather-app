@@ -1,16 +1,9 @@
-const apiUrl = 'https://weather-service-vbnet.azurewebsites.net/api/currentweather';
+const baseApiUrl = 'https://weather-service-vbnet.azurewebsites.net/api/';
 
-const fetchWeatherDataFromGet = async () => {
-    try {
-        const response = await fetch(apiUrl);
-        return await response.json();
-    } catch (error) {
-        console.error('Error fetching API Response:', error);
-    }
-
+export const fetchWeatherData = async () => {
     try {
         console.log('Attempting data fetch');
-        const response = await fetch(apiUrl);
+        const response = await fetch(`${baseApiUrl}/currentweather`);
 
         if (response.ok) {
             const data = await response.json();
@@ -24,16 +17,11 @@ const fetchWeatherDataFromGet = async () => {
     }
 };
 
-const fetchWeatherDataFromPost = async (geolocation) => {
+export const fetchWeatherDataByGeolocation = async (geolocation) => {
     try {
         console.log(`Attempting data fetch with:\n${geolocation}`);
-        const response = await fetch(apiUrl, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ Geolocation: geolocation }),
-        });
+
+        const response = await fetch(`${baseApiUrl}/currentweather/${geolocation}`);
 
         if (response.ok) {
             const data = await response.json();
@@ -46,5 +34,3 @@ const fetchWeatherDataFromPost = async (geolocation) => {
         console.error(`Error fetching data:\n${error}`);
     }
 };
-
-export { fetchWeatherDataFromGet, fetchWeatherDataFromPost };

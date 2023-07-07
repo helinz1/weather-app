@@ -1,4 +1,4 @@
-import { fetchWeatherDataFromGet, fetchWeatherDataFromPost } from './api.js';
+import * as WeatherServiceApi from './weather-service-api.js';
 
 // ------ Select elements ------
 const bodyElement = document.getElementsByTagName('body')[0];
@@ -64,13 +64,13 @@ const updateUi = (data) => {
 searchbarElement.addEventListener('submit', async (event) => {
     event.preventDefault();
 
-    const weatherData = await fetchWeatherDataFromPost(searchbarInputElement.value);
+    const weatherData = await WeatherServiceApi.fetchWeatherDataByGeolocation(searchbarInputElement.value);
     updateUi(weatherData);
 
     searchbarElement.reset();
 });
 
 window.onload = async () => {
-    const weatherData = await fetchWeatherDataFromGet();
+    const weatherData = await WeatherServiceApi.fetchWeatherData();
     updateUi(weatherData);
 };
